@@ -34,7 +34,6 @@ const email = ref('')
 const password = ref('')
 
 const handleRegister = () => {
-  // Имитация регистрации
   localStorage.setItem('auth_token', 'fake-token')
   router.push('/dashboard')
 }

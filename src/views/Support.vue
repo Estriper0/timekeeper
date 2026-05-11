@@ -6,7 +6,6 @@
         <div class="support">
           <h1 class="page-title">Поддержка</h1>
           <div class="support-grid">
-            <!-- Контактная информация -->
             <div class="contact-info">
               <div class="info-card">
                 <h3>Свяжитесь с нами</h3>
@@ -16,7 +15,6 @@
               </div>
             </div>
 
-            <!-- Форма сообщения -->
             <div class="support-form">
               <div class="form-card">
                 <h3>Написать в поддержку</h3>
@@ -72,10 +70,8 @@ const form = ref({
 const submitted = ref(false)
 
 const handleSubmit = () => {
-  // Имитация отправки
   console.log('Отправлено:', form.value)
   submitted.value = true
-  // Очистка формы
   setTimeout(() => {
     submitted.value = false
     form.value = { name: '', email: '', topic: 'question', message: '' }

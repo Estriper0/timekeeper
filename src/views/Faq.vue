@@ -6,7 +6,6 @@
           <span class="logo__icon">⏱️</span> TimeKeeper
         </router-link>
 
-        <!-- Десктопная навигация (видна только на больших экранах) -->
         <nav class="nav nav--desktop">
           <ul class="nav__list">
             <li class="nav__item"><router-link to="/" class="nav__link">Главная</router-link></li>
@@ -15,13 +14,11 @@
           </ul>
         </nav>
 
-        <!-- Десктопные кнопки (видимы только на больших экранах) -->
         <div class="header-buttons header-buttons--desktop">
           <router-link to="/login" class="btn btn--outline-light">Вход</router-link>
           <router-link to="/register" class="btn btn--success">Регистрация</router-link>
         </div>
 
-        <!-- Бургер-кнопка (видна только на мобильных) -->
         <button class="burger" @click="toggleMenu" aria-label="Меню">
           <span class="burger__line"></span>
           <span class="burger__line"></span>
@@ -29,7 +26,6 @@
         </button>
       </div>
 
-      <!-- Мобильное меню (выезжающее) -->
       <div class="mobile-menu" :class="{ open: menuOpen }">
         <div class="mobile-menu__inner">
           <nav class="mobile-nav">
@@ -55,7 +51,6 @@
               <h1 class="faq__title">Часто задаваемые вопросы</h1>
             </div>
             <div class="faq__list">
-              <!-- Вопрос 1 -->
               <div class="faq-item">
                 <input type="checkbox" id="faq1" class="faq-item__checkbox">
                 <label for="faq1" class="faq-item__question">
@@ -66,7 +61,6 @@
                   <p>Зарегистрируйтесь на нашем сайте, добавьте сотрудников — и можно приступать к учёту времени. Первые 5 сотрудников бесплатно.</p>
                 </div>
               </div>
-              <!-- Вопрос 2 -->
               <div class="faq-item">
                 <input type="checkbox" id="faq2" class="faq-item__checkbox">
                 <label for="faq2" class="faq-item__question">
@@ -77,7 +71,6 @@
                   <p>После входа в личный кабинет сотрудник нажимает кнопку «Начать работу». В конце дня — «Завершить». Все отметки фиксируются автоматически.</p>
                 </div>
               </div>
-              <!-- Вопрос 3 -->
               <div class="faq-item">
                 <input type="checkbox" id="faq3" class="faq-item__checkbox">
                 <label for="faq3" class="faq-item__question">
@@ -88,7 +81,6 @@
                   <p>Да, руководитель может отредактировать время прихода/ухода в разделе «Посещаемость».</p>
                 </div>
               </div>
-              <!-- Вопрос 4 -->
               <div class="faq-item">
                 <input type="checkbox" id="faq4" class="faq-item__checkbox">
                 <label for="faq4" class="faq-item__question">
@@ -99,7 +91,6 @@
                   <p>Отчёты доступны в разделе «Рабочее время». Вы можете выгрузить данные в Excel или PDF за любой период.</p>
                 </div>
               </div>
-              <!-- Вопрос 5 -->
               <div class="faq-item">
                 <input type="checkbox" id="faq5" class="faq-item__checkbox">
                 <label for="faq5" class="faq-item__question">
@@ -110,7 +101,6 @@
                   <p>Да, в тарифах «Бизнес» и «Корпоративный» предусмотрена интеграция с 1С: Зарплата и Управление Персоналом.</p>
                 </div>
               </div>
-              <!-- Вопрос 6 -->
               <div class="faq-item">
                 <input type="checkbox" id="faq6" class="faq-item__checkbox">
                 <label for="faq6" class="faq-item__question">
@@ -158,5 +148,4 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Стили аналогично Home.vue */
 </style>

@@ -5,7 +5,6 @@
         <span>⏱️</span> TimeKeeper
       </div>
 
-      <!-- Бургер-кнопка (только на мобильных) -->
       <button
         class="burger-btn"
         :class="{ active: isMenuOpen }"
@@ -15,7 +14,6 @@
         <span></span><span></span><span></span>
       </button>
 
-      <!-- Десктопная навигация (слева) -->
       <nav class="desktop-nav">
         <ul class="nav-list">
           <li>
@@ -58,10 +56,8 @@
         </ul>
       </nav>
 
-      <!-- Кнопка выхода прижата к правому краю -->
       <button @click="logout" class="btn btn--outline desktop-logout">Выйти</button>
 
-      <!-- Мобильное меню (выпадающее) -->
       <transition name="slide">
         <div v-if="isMenuOpen" class="mobile-menu">
           <ul class="mobile-nav-list">
@@ -180,7 +176,6 @@ const logout = () => {
   border-bottom: 2px solid #0d6efd;
 }
 
-/* Кнопка выхода прижата к правому краю */
 .desktop-logout {
   margin-left: auto;
   margin-right: 1rem;

@@ -6,7 +6,6 @@
           <span class="logo__icon">⏱️</span> TimeKeeper
         </router-link>
 
-        <!-- Десктопная навигация (видна только на больших экранах) -->
         <nav class="nav nav--desktop">
           <ul class="nav__list">
             <li class="nav__item">
@@ -21,13 +20,11 @@
           </ul>
         </nav>
 
-        <!-- Десктопные кнопки -->
         <div class="header-buttons header-buttons--desktop">
           <router-link to="/login" class="btn btn--outline-light">Вход</router-link>
           <router-link to="/register" class="btn btn--success">Регистрация</router-link>
         </div>
 
-        <!-- Бургер-кнопка (видна только на мобильных) -->
         <button class="burger" @click="toggleMenu" aria-label="Меню">
           <span class="burger__line"></span>
           <span class="burger__line"></span>
@@ -35,7 +32,6 @@
         </button>
       </div>
 
-      <!-- Мобильное меню (выезжает справа) - теперь внутри header -->
       <div class="mobile-menu" :class="{ open: menuOpen }">
         <div class="mobile-menu__inner">
           <nav class="mobile-nav">
@@ -240,7 +236,6 @@
       </div>
     </footer>
 
-    <!-- Кнопка "Наверх" для мобильных -->
     <button id="scrollToTopBtn" class="scroll-to-top" :class="{ show: showScrollBtn }" @click="scrollToTop" aria-label="Наверх">
       ↑
     </button>

@@ -6,7 +6,6 @@
           <span class="logo__icon">⏱️</span> TimeKeeper
         </router-link>
 
-        <!-- Десктопная навигация (видна только на больших экранах) -->
         <nav class="nav nav--desktop">
           <ul class="nav__list">
             <li class="nav__item"><router-link to="/" class="nav__link">Главная</router-link></li>
@@ -15,13 +14,11 @@
           </ul>
         </nav>
 
-        <!-- Десктопные кнопки (видимы только на больших экранах) -->
         <div class="header-buttons header-buttons--desktop">
           <router-link to="/login" class="btn btn--outline-light">Вход</router-link>
           <router-link to="/register" class="btn btn--success">Регистрация</router-link>
         </div>
 
-        <!-- Бургер-кнопка (видна только на мобильных) -->
         <button class="burger" @click="toggleMenu" aria-label="Меню">
           <span class="burger__line"></span>
           <span class="burger__line"></span>
@@ -29,7 +26,6 @@
         </button>
       </div>
 
-      <!-- Мобильное меню (выезжающее) -->
       <div class="mobile-menu" :class="{ open: menuOpen }">
         <div class="mobile-menu__inner">
           <nav class="mobile-nav">
@@ -57,7 +53,6 @@
             </div>
 
             <div class="contacts__grid">
-              <!-- Левая колонка: контактная информация -->
               <div class="contacts__info">
                 <div class="contact-card">
                   <h2 class="contact-card__title">Контакты</h2>
@@ -109,7 +104,6 @@
                 </div>
               </div>
 
-              <!-- Правая колонка: форма обратной связи -->
               <div class="contacts__form">
                 <div class="form-card">
                   <h2 class="form-card__title">Напишите нам</h2>
@@ -180,9 +174,7 @@ const toggleMenu = () => {
 }
 
 const handleSubmit = () => {
-  // Логика отправки формы
   console.log('Form submitted:', form.value)
-  // Здесь можно добавить отправку на сервер
 }
 
 onMounted(() => {
@@ -195,5 +187,4 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Стили аналогично */
 </style>

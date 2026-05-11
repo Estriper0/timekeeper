@@ -7,7 +7,6 @@
           <h1 class="page-title">Рабочее время сотрудников</h1>
 
           <div class="wt-layout">
-            <!-- Список сотрудников -->
             <div class="employees-list">
               <h3>Сотрудники</h3>
               <ul>
@@ -22,7 +21,6 @@
               </ul>
             </div>
 
-            <!-- Детальная таблица по выбранному сотруднику -->
             <div class="employee-details" v-if="selectedEmployee">
               <h2>{{ selectedEmployee.name }}</h2>
               <div class="table-wrapper">
@@ -71,7 +69,6 @@ import { employees, workingTimeData } from '../mocks/employees.js'
 
 const selectedEmployee = ref(null)
 
-// Получить рабочие дни выбранного сотрудника (отсортированные по дате)
 const employeeWorkDays = computed(() => {
   if (!selectedEmployee.value) return []
   return workingTimeData
@@ -79,7 +76,6 @@ const employeeWorkDays = computed(() => {
     .sort((a, b) => new Date(a.date) - new Date(b.date))
 })
 
-// Суммарные часы и переработка
 const totalHours = computed(() => {
   return employeeWorkDays.value.reduce((sum, day) => sum + day.hoursWorked, 0).toFixed(1)
 })

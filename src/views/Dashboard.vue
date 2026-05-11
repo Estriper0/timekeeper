@@ -4,13 +4,10 @@
     <main class="main-content">
       <div class="container">
         <div class="dashboard">
-          <!-- Приветствие -->
           <div class="welcome-card">
             <h1>Здравствуйте, {{ userName }}</h1>
             <p>Сегодня {{ formatDate(todayDate) }}</p>
           </div>
-
-          <!-- Список сотрудников -->
           <div class="employees-section">
             <h2>Сотрудники</h2>
             <div class="employee-list">
@@ -43,10 +40,8 @@ import { computed, ref } from 'vue'
 import TheHeader from '../components/TheHeader.vue'
 import { employees, attendanceData, attendanceDates } from '../mocks/employees.js'
 
-// Имя пользователя
 const userName = ref('Сергей')
 
-// Текущая дата (последняя из доступных в моках)
 const todayDate = attendanceDates[attendanceDates.length - 1] //
 
 function getDepartmentName(dept) {

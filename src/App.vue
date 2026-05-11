@@ -3,7 +3,6 @@
 </template>
 
 <script setup>
-// Маршрутизация теперь обрабатывается router
 </script>
 
 <style>

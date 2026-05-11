@@ -6,7 +6,6 @@
         <div class="attendance">
           <h1 class="page-title">Посещаемость сотрудников</h1>
 
-          <!-- Карточки-сводки за выбранную дату -->
           <div class="stats-grid">
             <div class="stat-card">
               <div class="stat-card__icon"></div>
@@ -38,7 +37,6 @@
             </div>
           </div>
 
-          <!-- Выбор даты -->
           <div class="filter-bar">
             <label><p class="filter-bar--label">Выберите дату: </p></label>
             <select v-model="selectedDate" class="filter-select">
@@ -48,7 +46,6 @@
             </select>
           </div>
 
-          <!-- Таблица посещаемости за выбранную дату -->
           <div class="table-wrapper">
             <table class="attendance-table">
               <thead>
@@ -89,22 +86,18 @@ import { ref, computed } from 'vue'
 import TheHeader from '../components/TheHeader.vue'
 import { employees, attendanceDates, attendanceData } from '../mocks/employees.js'
 
-// Выбранная дата (по умолчанию последняя из трёх)
 const selectedDate = ref(attendanceDates[attendanceDates.length - 1])
 
-// Получить запись посещаемости для сотрудника по выбранной дате
 function getRecord(employeeId) {
   return attendanceData.find(record => record.date === selectedDate.value && record.employeeId === employeeId)
 }
 
-// Статистика по выбранной дате
 const recordsForDate = computed(() => attendanceData.filter(r => r.date === selectedDate.value))
 
 const presentCount = computed(() => recordsForDate.value.filter(r => r.status !== 'absent').length)
 const lateCount = computed(() => recordsForDate.value.filter(r => r.status === 'late').length)
 const absentCount = computed(() => recordsForDate.value.filter(r => r.status === 'absent').length)
 
-// Вспомогательные функции
 function getDepartmentName(dept) {
   const names = { it: 'IT', hr: 'HR', sales: 'Продажи' }
   return names[dept] || dept

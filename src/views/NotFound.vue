@@ -20,11 +20,9 @@
 </template>
 
 <script setup>
-// Простой компонент без логики
 </script>
 
 <style scoped>
-/* Стили для 404 */
 .section--404 {
   min-height: 100vh;
   display: flex;

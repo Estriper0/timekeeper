@@ -26,7 +26,6 @@ const router = createRouter({
   routes
 })
 
-// Гвард для защиты маршрутов
 router.beforeEach((to, from, next) => {
   const isAuthenticated = !!localStorage.getItem('auth_token')
   if (to.meta.requiresAuth && !isAuthenticated) {
