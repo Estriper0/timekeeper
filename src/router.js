@@ -9,7 +9,7 @@ import WorkingTime from './views/WorkingTime.vue'
 import Support from './views/Support.vue'
 
 const routes = [
-  { path: '/', name: 'Home', component: Home },
+  { path: '/timekeeper', name: 'Home', component: Home },
   { path: '/faq', name: 'Faq', component: Faq },
   { path: '/contact', name: 'Contact', component: Contact },
   { path: '/login', name: 'Login', component: () => import('./views/Login.vue') }, // Создать позже
