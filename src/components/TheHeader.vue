@@ -1,54 +1,45 @@
 <template>
-  <header class="app-header">
-    <div class="container header-container">
-      <div class="logo">
-        <span>⏱️</span> TimeKeeper
-      </div>
+  <header class="header">
+    <div class="container header__container">
+      <router-link to="/" class="logo">
+        <span class="logo__icon">⏱️</span> TimeKeeper
+      </router-link>
 
-      <button
-        class="burger-btn"
-        :class="{ active: isMenuOpen }"
-        @click="toggleMenu"
-        aria-label="Меню"
-      >
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="desktop-nav">
-        <ul class="nav-list">
-          <li>
+      <nav class="nav nav--desktop">
+        <ul class="nav__list">
+          <li class="nav__item">
             <router-link
               to="/dashboard"
-              class="nav-link"
-              active-class="nav-link--active"
-              exact-active-class="nav-link--active"
+              class="nav__link"
+              active-class="nav__link--active"
+              exact-active-class="nav__link--active"
             >
               Панель
             </router-link>
           </li>
-          <li>
+          <li class="nav__item">
             <router-link
               to="/attendance"
-              class="nav-link"
-              active-class="nav-link--active"
+              class="nav__link"
+              active-class="nav__link--active"
             >
               Посещаемость
             </router-link>
           </li>
-          <li>
+          <li class="nav__item">
             <router-link
               to="/working-time"
-              class="nav-link"
-              active-class="nav-link--active"
+              class="nav__link"
+              active-class="nav__link--active"
             >
               Рабочее время
             </router-link>
           </li>
-          <li>
+          <li class="nav__item">
             <router-link
               to="/support"
-              class="nav-link"
-              active-class="nav-link--active"
+              class="nav__link"
+              active-class="nav__link--active"
             >
               Поддержка
             </router-link>
@@ -56,48 +47,75 @@
         </ul>
       </nav>
 
-      <button @click="logout" class="btn btn--outline desktop-logout">Выйти</button>
+      <div class="header-buttons header-buttons--desktop">
+        <button @click="logout" class="btn btn--outline-light header-buttons__button">Выйти</button>
+      </div>
 
-      <transition name="slide">
-        <div v-if="isMenuOpen" class="mobile-menu">
-          <ul class="mobile-nav-list">
-            <li>
-              <router-link
-                to="/dashboard"
-                class="mobile-nav-link"
-              >
-                Панель
-              </router-link>
-            </li>
-            <li>
-              <router-link
-                to="/attendance"
-                class="mobile-nav-link"
-              >
-                Посещаемость
-              </router-link>
-            </li>
-            <li>
-              <router-link
-                to="/working-time"
-                class="mobile-nav-link"
-              >
-                Рабочее время
-              </router-link>
-            </li>
-            <li>
-              <router-link
-                to="/support"
-                class="mobile-nav-link"
-              >
-                Поддержка
-              </router-link>
-            </li>
-          </ul>
-          <button @click="logout" class="btn btn--outline mobile-logout">Выйти</button>
-        </div>
-      </transition>
+      <button
+        class="burger"
+        :class="{ 'burger--open': isMenuOpen }"
+        @click="toggleMenu"
+        aria-label="Меню"
+      >
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+        <span class="burger__line"></span>
+      </button>
     </div>
+
+    <transition name="slide">
+      <div
+        v-if="isMenuOpen"
+        class="mobile-menu"
+        :class="{ 'mobile-menu--open': isMenuOpen }"
+      >
+        <div class="mobile-menu__inner">
+          <nav class="mobile-nav">
+            <ul class="mobile-nav__list">
+              <li class="mobile-nav__item">
+                <router-link
+                  to="/dashboard"
+                  class="mobile-nav__link"
+                  active-class="mobile-nav__link--active"
+                >
+                  Панель
+                </router-link>
+              </li>
+              <li class="mobile-nav__item">
+                <router-link
+                  to="/attendance"
+                  class="mobile-nav__link"
+                  active-class="mobile-nav__link--active"
+                >
+                  Посещаемость
+                </router-link>
+              </li>
+              <li class="mobile-nav__item">
+                <router-link
+                  to="/working-time"
+                  class="mobile-nav__link"
+                  active-class="mobile-nav__link--active"
+                >
+                  Рабочее время
+                </router-link>
+              </li>
+              <li class="mobile-nav__item">
+                <router-link
+                  to="/support"
+                  class="mobile-nav__link"
+                  active-class="mobile-nav__link--active"
+                >
+                  Поддержка
+                </router-link>
+              </li>
+            </ul>
+          </nav>
+          <div class="mobile-buttons">
+            <button @click="logout" class="btn btn--outline-light mobile-btn">Выйти</button>
+          </div>
+        </div>
+      </div>
+    </transition>
   </header>
 </template>
 
@@ -120,181 +138,27 @@ const logout = () => {
 </script>
 
 <style scoped>
-.app-header {
+.header {
   background-color: #212529;
   padding: 1rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
 }
-.header-container {
+.header__container {
   display: flex;
   align-items: center;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
-  position: relative;
-}
-.logo {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #0d6efd;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-right: 2rem;   
-}
-
-
-.desktop-nav {
-  display: flex;
-  align-items: center;
-}
-.nav-list {
-  display: flex;
   gap: 1.5rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
-.nav-link {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.85);
-  font-weight: 500;
-  font-size: 0.95rem;
-  cursor: pointer;
-  padding: 0.25rem 0;
-  transition: all 0.2s;
-}
-.nav-link:hover {
-  color: white;
-}
-.nav-link.active {
-  color: white;
-  font-weight: 600;
-  border-bottom: 2px solid #0d6efd;
-}
-
-.desktop-logout {
-  margin-left: auto;
-  margin-right: 1rem;
-  background: transparent;
+.header-buttons__button {
   border: 1px solid rgba(255,255,255,0.5);
-  color: white;
-  padding: 0.5rem 1.25rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
 }
-.desktop-logout:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: white;
-}
-
-
-.burger-btn {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-left: auto;
-  margin-right: 1rem;
-  width: 28px;
-  height: 20px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 101;
-}
-.burger-btn span {
-  width: 100%;
-  height: 2px;
-  background-color: white;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-.burger-btn.active span:nth-child(1) {
-  transform: translateY(9px) rotate(45deg);
-}
-.burger-btn.active span:nth-child(2) {
-  opacity: 0;
-}
-.burger-btn.active span:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg);
-}
-
-
-.mobile-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background-color: #212529;
-  padding: 1rem 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  z-index: 100;
-}
-.mobile-nav-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.mobile-nav-link {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.85);
-  font-size: 1rem;
-  padding: 0.5rem 0;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-}
-.mobile-nav-link.active {
-  color: white;
-  font-weight: 600;
-}
-.mobile-logout {
-  width: 100%;
-  text-align: center;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.5);
-  color: white;
-  padding: 0.5rem 1.25rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-
-.slide-enter-active, .slide-leave-active {
-  transition: all 0.3s ease;
-}
-.slide-enter-from, .slide-leave-to {
-  transform: translateY(-10px);
-  opacity: 0;
-}
-
 
 @media (max-width: 768px) {
-  .desktop-nav {
-    display: none;
-  }
-  .desktop-logout {
-    display: none;
-  }
-  .burger-btn {
-    display: flex;
-  }
-  .header-container {
+  .header__container {
     padding: 0 16px;
   }
 }

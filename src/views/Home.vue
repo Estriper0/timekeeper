@@ -25,14 +25,14 @@
           <router-link to="/register" class="btn btn--success">Регистрация</router-link>
         </div>
 
-        <button class="burger" @click="toggleMenu" aria-label="Меню">
+        <button class="burger" :class="{ 'burger--open': menuOpen }" @click="toggleMenu" aria-label="Меню">
           <span class="burger__line"></span>
           <span class="burger__line"></span>
           <span class="burger__line"></span>
         </button>
       </div>
 
-      <div class="mobile-menu" :class="{ open: menuOpen }">
+      <div class="mobile-menu" :class="{ 'mobile-menu--open': menuOpen }">
         <div class="mobile-menu__inner">
           <nav class="mobile-nav">
             <ul class="mobile-nav__list">

@@ -12,8 +12,8 @@ const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/faq', name: 'Faq', component: Faq },
   { path: '/contact', name: 'Contact', component: Contact },
-  { path: '/login', name: 'Login', component: () => import('./views/Login.vue') }, // Создать позже
-  { path: '/register', name: 'Register', component: () => import('./views/Register.vue') }, // Создать позже
+  { path: '/login', name: 'Login', component: () => import('./views/Login.vue') },
+  { path: '/register', name: 'Register', component: () => import('./views/Register.vue') },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: { requiresAuth: true } },
   { path: '/attendance', name: 'Attendance', component: Attendance, meta: { requiresAuth: true } },
   { path: '/working-time', name: 'WorkingTime', component: WorkingTime, meta: { requiresAuth: true } },
@@ -22,7 +22,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
 

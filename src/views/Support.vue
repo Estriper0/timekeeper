@@ -50,7 +50,7 @@
         </div>
       </div>
     </main>
-    <footer class="app-footer">
+    <footer class="footer">
       <div class="container">© 2026 TimeKeeper. Личный кабинет</div>
     </footer>
   </div>

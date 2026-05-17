@@ -14,7 +14,8 @@
                   v-for="emp in employees"
                   :key="emp.id"
                   @click="selectedEmployee = emp"
-                  :class="{ active: selectedEmployee?.id === emp.id }"
+                  class="employees-list__item"
+                  :class="{ 'employees-list__item--active': selectedEmployee?.id === emp.id }"
                 >
                   {{ emp.name }}
                 </li>
@@ -37,9 +38,9 @@
                     <tr v-for="day in employeeWorkDays" :key="day.date">
                       <td>{{ formatDate(day.date) }}</td>
                       <td>{{ day.hoursWorked }}</td>
-                      <td :class="{ overtime: day.overtime > 0 }">{{ day.overtime }}</td>
+                      <td :class="{ 'hours-table__cell--overtime': day.overtime > 0 }">{{ day.overtime }}</td>
                       <td>
-                        <span :class="['status-badge', day.overtime > 0 ? 'overtime' : 'normal']">
+                        <span :class="['status-badge', day.overtime > 0 ? 'status-badge--overtime' : 'status-badge--normal']">
                           {{ day.overtime > 0 ? 'Переработка' : (day.overtime < 0 ? 'Недоработка' : 'Норма') }}
                         </span>
                       </td>
@@ -56,7 +57,7 @@
         </div>
       </div>
     </main>
-    <footer class="app-footer">
+    <footer class="footer">
       <div class="container">© 2026 TimeKeeper. Личный кабинет</div>
     </footer>
   </div>
@@ -119,17 +120,17 @@ function formatDate(dateStr) {
   flex-direction: column;  
   gap: 0.5rem;
 }
-.employees-list li { 
+.employees-list__item { 
   padding: 0.5rem; 
   cursor: pointer; 
   border-radius: 0.5rem; 
   transition: background 0.2s; 
   white-space: normal;      
 }
-.employees-list li:hover { 
+.employees-list__item:hover { 
   background: #e9ecef; 
 }
-.employees-list li.active { 
+.employees-list__item--active { 
   background: #0d6efd; 
   color: white; 
 }
@@ -166,7 +167,7 @@ function formatDate(dateStr) {
 .hours-table th { 
   background-color: #f8f9fa; 
 }
-.overtime { 
+.hours-table__cell--overtime { 
   color: #dc3545; 
   font-weight: 600; 
 }
@@ -176,11 +177,11 @@ function formatDate(dateStr) {
   font-size: 0.75rem; 
   font-weight: 600; 
 }
-.status-badge.overtime { 
+.status-badge--overtime { 
   background-color: #f8d7da; 
   color: #842029; 
 }
-.status-badge.normal { 
+.status-badge--normal { 
   background-color: #d1e7dd; 
   color: #0f5132; 
 }

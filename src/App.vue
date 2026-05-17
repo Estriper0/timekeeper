@@ -9,7 +9,7 @@
   .main-content {
     padding: 2rem 0;
   }
-  .app-footer {
+  .footer {
     background-color: #212529;
     color: rgba(255,255,255,0.7);
     padding: 2rem 0;
@@ -33,7 +33,7 @@
     .login-card h2 {
       font-size: 1.4rem;
     }
-    .app-footer {
+    .footer {
       padding: 1rem 0;
       font-size: 0.75rem;
     }

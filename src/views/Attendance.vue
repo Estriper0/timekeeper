@@ -38,7 +38,7 @@
           </div>
 
           <div class="filter-bar">
-            <label><p class="filter-bar--label">Выберите дату: </p></label>
+            <label><p class="filter-bar__label">Выберите дату: </p></label>
             <select v-model="selectedDate" class="filter-select">
               <option v-for="date in attendanceDates" :key="date" :value="date">
                 {{ formatDate(date) }}
@@ -75,7 +75,7 @@
         </div>
       </div>
     </main>
-    <footer class="app-footer">
+    <footer class="footer">
       <div class="container">© 2026 TimeKeeper. Личный кабинет</div>
     </footer>
   </div>
@@ -168,7 +168,7 @@ function formatDate(dateStr) {
   margin-bottom: 1.5rem;
 }
 
-.filter-bar--label{
+.filter-bar__label {
     margin-top: 0.4rem;
 }
 
@@ -264,7 +264,7 @@ function formatDate(dateStr) {
     align-items: flex-start;
     gap: 0.5rem;
   }
-  .filter-bar--label {
+  .filter-bar__label {
     margin-top: 0;
   }
   .filter-select {
