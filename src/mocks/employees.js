@@ -6,8 +6,6 @@ export const employees = [
   { id: 5, name: 'Елена Васнецова', department: 'hr' }
 ]
 
-export const attendanceDates = ['2026-04-28', '2026-04-29', '2026-04-30']
-
 export const attendanceData = [
   { date: '2026-04-28', employeeId: 1, checkIn: '09:05', checkOut: '18:10', status: 'late' },
   { date: '2026-04-28', employeeId: 2, checkIn: '08:58', checkOut: '18:02', status: 'on-time' },

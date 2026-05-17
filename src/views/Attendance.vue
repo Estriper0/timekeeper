@@ -38,12 +38,13 @@
           </div>
 
           <div class="attendance__filter-bar">
-            <label><p class="attendance__filter-label">Выберите дату: </p></label>
-            <select v-model="selectedDate" class="attendance__filter-select">
-              <option v-for="date in attendanceDates" :key="date" :value="date">
-                {{ formatDate(date) }}
-              </option>
-            </select>
+            <label class="attendance__filter-label" for="attendance-date">Выберите дату:</label>
+            <input
+              id="attendance-date"
+              type="date"
+              v-model="selectedDate"
+              class="attendance__filter-select"
+            />
           </div>
 
           <div class="attendance__table-wrapper">
@@ -84,9 +85,9 @@
 <script setup>
 import { ref, computed } from 'vue'
 import TheHeader from '../components/TheHeader.vue'
-import { employees, attendanceDates, attendanceData } from '../mocks/employees.js'
+import { employees, attendanceData } from '../mocks/employees.js'
 
-const selectedDate = ref(attendanceDates[attendanceDates.length - 1])
+const selectedDate = ref(new Date().toISOString().slice(0, 10))
 
 function getRecord(employeeId) {
   return attendanceData.find(record => record.date === selectedDate.value && record.employeeId === employeeId)
@@ -188,8 +189,11 @@ function formatDate(dateStr) {
 
 .attendance-table {
   width: 100%;
+  min-width: 680px;
+  max-width: 100%;
   border-collapse: collapse;
   font-size: 0.9rem;
+  table-layout: fixed;
 }
 
 .attendance-table th,
@@ -197,6 +201,35 @@ function formatDate(dateStr) {
   padding: 0.75rem 1rem;
   text-align: left;
   border-bottom: 1px solid #e9ecef;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attendance-table th:nth-child(1),
+.attendance-table td:nth-child(1) {
+  width: 28%;
+  min-width: 160px;
+}
+
+.attendance-table th:nth-child(2),
+.attendance-table td:nth-child(2) {
+  width: 22%;
+  min-width: 130px;
+}
+
+.attendance-table th:nth-child(3),
+.attendance-table td:nth-child(3),
+.attendance-table th:nth-child(4),
+.attendance-table td:nth-child(4) {
+  width: 12%;
+  min-width: 100px;
+}
+
+.attendance-table th:nth-child(5),
+.attendance-table td:nth-child(5) {
+  width: 18%;
+  min-width: 120px;
 }
 
 .attendance-table th {
