@@ -4,7 +4,7 @@
     <main class="main-content">
       <div class="container">
         <div class="support">
-          <h1 class="page-title">Поддержка</h1>
+          <h1 class="support__title">Поддержка</h1>
           <div class="support-grid">
             <div class="contact-info">
               <div class="info-card">
@@ -19,25 +19,25 @@
               <div class="form-card">
                 <h3>Написать в поддержку</h3>
                 <form @submit.prevent="handleSubmit">
-                  <div class="form-group">
+                  <div class="support-form__group">
                     <label>Ваше имя</label>
-                    <input type="text" v-model="form.name" required class="form-control" />
+                    <input type="text" v-model="form.name" required class="support-form__control" />
                   </div>
-                  <div class="form-group">
+                  <div class="support-form__group">
                     <label>Email</label>
-                    <input type="email" v-model="form.email" required class="form-control" />
+                    <input type="email" v-model="form.email" required class="support-form__control" />
                   </div>
-                  <div class="form-group">
+                  <div class="support-form__group">
                     <label>Тема</label>
-                    <select v-model="form.topic" class="form-control">
+                    <select v-model="form.topic" class="support-form__control">
                       <option value="question">Вопрос по работе</option>
                       <option value="bug">Сообщить об ошибке</option>
                       <option value="suggestion">Предложение</option>
                     </select>
                   </div>
-                  <div class="form-group">
+                  <div class="support-form__group">
                     <label>Сообщение</label>
-                    <textarea v-model="form.message" rows="4" required class="form-control"></textarea>
+                    <textarea v-model="form.message" rows="4" required class="support-form__control"></textarea>
                   </div>
                   <button type="submit" class="btn btn--primary">Отправить</button>
                 </form>
@@ -80,7 +80,7 @@ const handleSubmit = () => {
 </script>
 
 <style scoped>
-.page-title {
+.support__title {
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
@@ -103,15 +103,15 @@ const handleSubmit = () => {
 .info-card p {
   margin: 0.5rem 0;
 }
-.form-group {
+.support-form__group {
   margin-bottom: 1rem;
 }
-.form-group label {
+.support-form__group label {
   display: block;
   margin-bottom: 0.25rem;
   font-weight: 500;
 }
-.form-control {
+.support-form__control {
   width: 100%;
   padding: 0.5rem 0.75rem;
   border: 1px solid #ced4da;
@@ -147,7 +147,7 @@ const handleSubmit = () => {
   .info-card h3, .form-card h3 {
     font-size: 1.1rem;
   }
-  .form-group label {
+  .support-form__group label {
     font-size: 0.85rem;
   }
   .btn--primary {

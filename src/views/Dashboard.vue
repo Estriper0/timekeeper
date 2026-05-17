@@ -5,11 +5,11 @@
       <div class="container">
         <div class="dashboard">
           <div class="dashboard__welcome-card">
-            <h1>Здравствуйте, {{ userName }}</h1>
+            <h1 class="dashboard__title">Здравствуйте, {{ userName }}</h1>
             <p>Сегодня {{ formatDate(todayDate) }}</p>
           </div>
           <div class="dashboard__employees">
-            <h2>Сотрудники</h2>
+            <h2 class="dashboard__section-title">Сотрудники</h2>
             <div class="dashboard__employee-list">
               <div
                 v-for="emp in employees"
@@ -42,7 +42,7 @@ import { employees, attendanceData, attendanceDates } from '../mocks/employees.j
 
 const userName = ref('Сергей')
 
-const todayDate = attendanceDates[attendanceDates.length - 1] 
+const todayDate = new Date().toISOString().split('T')[0]
 
 function getDepartmentName(dept) {
   const names = { it: 'IT', hr: 'HR', sales: 'Продажи' }
@@ -72,12 +72,16 @@ function formatDate(dateStr) {
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-.dashboard__welcome-card h1 {
+.dashboard__title {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
 
-.dashboard__employees h2 {
+.dashboard__welcome-card p {
+  margin: 0;
+}
+
+.dashboard__section-title {
   font-size: 1.25rem;
   margin-bottom: 0.75rem;
   color: #1e293b;

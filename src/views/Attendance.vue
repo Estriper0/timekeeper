@@ -4,7 +4,7 @@
     <main class="main-content">
       <div class="container">
         <div class="attendance">
-          <h1 class="page-title">Посещаемость сотрудников</h1>
+          <h1 class="attendance__title">Посещаемость сотрудников</h1>
 
           <div class="stats-grid">
             <div class="stat-card">
@@ -37,16 +37,16 @@
             </div>
           </div>
 
-          <div class="filter-bar">
-            <label><p class="filter-bar__label">Выберите дату: </p></label>
-            <select v-model="selectedDate" class="filter-select">
+          <div class="attendance__filter-bar">
+            <label><p class="attendance__filter-label">Выберите дату: </p></label>
+            <select v-model="selectedDate" class="attendance__filter-select">
               <option v-for="date in attendanceDates" :key="date" :value="date">
                 {{ formatDate(date) }}
               </option>
             </select>
           </div>
 
-          <div class="table-wrapper">
+          <div class="attendance__table-wrapper">
             <table class="attendance-table">
               <thead>
                 <tr>
@@ -64,7 +64,7 @@
                   <td>{{ getRecord(emp.id)?.checkIn || '—' }}</td>
                   <td>{{ getRecord(emp.id)?.checkOut || '—' }}</td>
                   <td>
-                    <span :class="['status-badge', getRecord(emp.id)?.status || 'absent']">
+                    <span :class="['attendance__status-badge', `attendance__status-badge--${getRecord(emp.id)?.status || 'absent'}`]">
                       {{ getStatusText(getRecord(emp.id)?.status) }}
                     </span>
                   </td>
@@ -120,10 +120,27 @@ function formatDate(dateStr) {
 
 
 <style scoped>
-.page-title {
+.attendance__title {
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
+}
+
+.attendance__filter-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.attendance__filter-label {
+  margin-top: 0.4rem;
+}
+
+.attendance__filter-select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.5rem;
+  font-family: inherit;
 }
 
 .stats-grid {
@@ -162,28 +179,7 @@ function formatDate(dateStr) {
   color: #dc3545;
 }
 
-.filter-bar {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.filter-bar__label {
-    margin-top: 0.4rem;
-}
-
-.search-input, .filter-select {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #ced4da;
-  border-radius: 0.5rem;
-  font-family: inherit;
-}
-
-.search-input {
-  flex: 1;
-}
-
-.table-wrapper {
+.attendance__table-wrapper {
   overflow-x: auto;
   background: white;
   border-radius: 0.75rem;
@@ -208,7 +204,7 @@ function formatDate(dateStr) {
   font-weight: 600;
 }
 
-.status-badge {
+.attendance__status-badge {
   display: inline-block;
   padding: 0.25rem 0.5rem;
   border-radius: 2rem;
@@ -216,19 +212,19 @@ function formatDate(dateStr) {
   font-weight: 600;
 }
 
-.status-badge.on-time {
+.attendance__status-badge--on-time {
   background-color: #d1e7dd;
   color: #0f5132;
 }
 
-.status-badge.late {
+.attendance__status-badge--late {
   background-color: #f8d7da;
   color: #842029;
 }
 
-.status-badge.absent {
-  background-color: #e2e3e5;
-  color: #41464b;
+.attendance__status-badge--absent {
+  background-color: #fff3cd;
+  color: #664d03;
 }
 
 .empty-row {
@@ -242,7 +238,7 @@ function formatDate(dateStr) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .page-title {
+  .attendance__title {
     font-size: 1.5rem;
   }
 }
@@ -259,15 +255,15 @@ function formatDate(dateStr) {
   .stat-card__value {
     font-size: 1.3rem;
   }
-  .filter-bar {
+  .attendance__filter-bar {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  .filter-bar__label {
+  .attendance__filter-label {
     margin-top: 0;
   }
-  .filter-select {
+  .attendance__filter-select {
     width: 100%;
   }
   .attendance-table th,

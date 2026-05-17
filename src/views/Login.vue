@@ -1,20 +1,20 @@
 <template>
   <div class="login-page">
-    <div class="card login-card">
-      <h2>Вход в TimeKeeper</h2>
-      <form @submit.prevent="handleLogin">
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" v-model="email" class="form-control" required />
+    <div class="login-page__card">
+      <h2 class="login-page__title">Вход в TimeKeeper</h2>
+      <form @submit.prevent="handleLogin" class="login-page__form">
+        <div class="login-page__group">
+          <label class="login-page__label">Email</label>
+          <input type="email" v-model="email" class="login-page__input" required />
         </div>
-        <div class="form-group">
-          <label>Пароль</label>
-          <input type="password" v-model="password" class="form-control" required />
+        <div class="login-page__group">
+          <label class="login-page__label">Пароль</label>
+          <input type="password" v-model="password" class="login-page__input" required />
         </div>
-        <button type="submit" class="btn btn--primary" style="width: 100%">Войти</button>
+        <button type="submit" class="login-page__button login-page__button--primary">Войти</button>
       </form>
-      <p class="mt-3 text-center">
-        Нет аккаунта? <router-link to="/register">Зарегистрироваться</router-link>
+      <p class="login-page__footer">
+        Нет аккаунта? <router-link to="/register" class="login-page__link">Зарегистрироваться</router-link>
       </p>
     </div>
   </div>
@@ -42,38 +42,46 @@ const handleLogin = () => {
   min-height: 100vh;
   background-color: #f4f6f9;
 }
-.login-card {
+.login-page__card {
   width: 100%;
   max-width: 400px;
   padding: 2rem;
 }
-.form-group {
+.login-page__title {
+  margin-bottom: 1.5rem;
+}
+.login-page__group {
   margin-bottom: 1rem;
 }
-.form-group label {
+.login-page__label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
-.form-control {
+.login-page__input {
   width: 100%;
   padding: 0.5rem 0.75rem;
   border: 1px solid #ced4da;
   border-radius: 0.5rem;
   font-family: inherit;
 }
-.btn--primary {
-  background-color: #0d6efd;
-  color: white;
+.login-page__button {
+  width: 100%;
   border: none;
   padding: 0.75rem;
   border-radius: 0.5rem;
   cursor: pointer;
+  color: white;
 }
-.mt-3 {
+.login-page__button--primary {
+  background-color: #0d6efd;
+}
+.login-page__footer {
   margin-top: 1rem;
-}
-.text-center {
   text-align: center;
+}
+.login-page__link {
+  color: #0d6efd;
+  text-decoration: none;
 }
 </style>

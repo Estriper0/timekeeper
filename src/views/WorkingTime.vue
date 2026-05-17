@@ -4,28 +4,28 @@
     <main class="main-content">
       <div class="container">
         <div class="working-time">
-          <h1 class="page-title">Рабочее время сотрудников</h1>
+          <h1 class="working-time__title">Рабочее время сотрудников</h1>
 
-          <div class="wt-layout">
-            <div class="employees-list">
-              <h3>Сотрудники</h3>
+          <div class="working-time__layout">
+            <div class="working-time__employees-list">
+              <h3 class="working-time__list-title">Сотрудники</h3>
               <ul>
                 <li
                   v-for="emp in employees"
                   :key="emp.id"
                   @click="selectedEmployee = emp"
-                  class="employees-list__item"
-                  :class="{ 'employees-list__item--active': selectedEmployee?.id === emp.id }"
+                  class="working-time__employee-item"
+                  :class="{ 'working-time__employee-item--active': selectedEmployee?.id === emp.id }"
                 >
                   {{ emp.name }}
                 </li>
               </ul>
             </div>
 
-            <div class="employee-details" v-if="selectedEmployee">
+            <div class="working-time__details" v-if="selectedEmployee">
               <h2>{{ selectedEmployee.name }}</h2>
-              <div class="table-wrapper">
-                <table class="hours-table">
+              <div class="working-time__table-wrapper">
+                <table class="working-time__hours-table">
                   <thead>
                     <tr>
                       <th>Дата</th>
@@ -38,9 +38,9 @@
                     <tr v-for="day in employeeWorkDays" :key="day.date">
                       <td>{{ formatDate(day.date) }}</td>
                       <td>{{ day.hoursWorked }}</td>
-                      <td :class="{ 'hours-table__cell--overtime': day.overtime > 0 }">{{ day.overtime }}</td>
+                      <td :class="{ 'working-time__hours-cell--overtime': day.overtime > 0 }">{{ day.overtime }}</td>
                       <td>
-                        <span :class="['status-badge', day.overtime > 0 ? 'status-badge--overtime' : 'status-badge--normal']">
+                        <span :class="['working-time__status-badge', day.overtime > 0 ? 'working-time__status-badge--overtime' : 'working-time__status-badge--normal']">
                           {{ day.overtime > 0 ? 'Переработка' : (day.overtime < 0 ? 'Недоработка' : 'Норма') }}
                         </span>
                       </td>
@@ -48,7 +48,7 @@
                   </tbody>
                  </table>
               </div>
-              <div class="summary">
+              <div class="working-time__summary">
                 <p><strong>Всего за период:</strong> {{ totalHours }} ч (переработка: {{ totalOvertime }} ч)</p>
               </div>
             </div>
@@ -91,16 +91,16 @@ function formatDate(dateStr) {
 </script>
 
 <style scoped>
-.page-title { 
+.working-time__title { 
   font-size: 1.8rem; 
   margin-bottom: 1.5rem; 
 }
-.wt-layout { 
+.working-time__layout { 
   display: flex; 
   gap: 2rem; 
   flex-wrap: wrap; 
 }
-.employees-list { 
+.working-time__employees-list { 
   flex: 1; 
   min-width: 200px; 
   background: white; 
@@ -108,11 +108,11 @@ function formatDate(dateStr) {
   padding: 1rem; 
   box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
 }
-.employees-list h3 { 
+.working-time__list-title { 
   margin-top: 0; 
   margin-bottom: 0.5rem;
 }
-.employees-list ul { 
+.working-time__employees-list ul { 
   list-style: none; 
   padding: 0; 
   margin: 0;
@@ -120,21 +120,21 @@ function formatDate(dateStr) {
   flex-direction: column;  
   gap: 0.5rem;
 }
-.employees-list__item { 
+.working-time__employee-item { 
   padding: 0.5rem; 
   cursor: pointer; 
   border-radius: 0.5rem; 
   transition: background 0.2s; 
   white-space: normal;      
 }
-.employees-list__item:hover { 
+.working-time__employee-item:hover { 
   background: #e9ecef; 
 }
-.employees-list__item--active { 
+.working-time__employee-item--active { 
   background: #0d6efd; 
   color: white; 
 }
-.employee-details { 
+.working-time__details { 
   flex: 3; 
   background: white; 
   border-radius: 0.75rem; 
@@ -142,7 +142,7 @@ function formatDate(dateStr) {
   box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
   overflow-x: auto;         
 }
-.no-selection { 
+.working-time__no-selection { 
   flex: 3; 
   background: white; 
   border-radius: 0.75rem; 
@@ -150,42 +150,42 @@ function formatDate(dateStr) {
   text-align: center; 
   color: #6c757d; 
 }
-.table-wrapper { 
+.working-time__table-wrapper { 
   overflow-x: auto; 
 }
-.hours-table { 
+.working-time__hours-table { 
   width: 100%; 
   border-collapse: collapse; 
   margin-top: 1rem;
 }
-.hours-table th, 
-.hours-table td { 
+.working-time__hours-table th, 
+.working-time__hours-table td { 
   padding: 0.5rem 1rem; 
   text-align: left; 
   border-bottom: 1px solid #e9ecef; 
 }
-.hours-table th { 
+.working-time__hours-table th { 
   background-color: #f8f9fa; 
 }
-.hours-table__cell--overtime { 
+.working-time__hours-cell--overtime { 
   color: #dc3545; 
   font-weight: 600; 
 }
-.status-badge { 
+.working-time__status-badge { 
   padding: 0.25rem 0.5rem; 
   border-radius: 2rem; 
   font-size: 0.75rem; 
   font-weight: 600; 
 }
-.status-badge--overtime { 
+.working-time__status-badge--overtime { 
   background-color: #f8d7da; 
   color: #842029; 
 }
-.status-badge--normal { 
+.working-time__status-badge--normal { 
   background-color: #d1e7dd; 
   color: #0f5132; 
 }
-.summary { 
+.working-time__summary { 
   margin-top: 1rem; 
   padding-top: 1rem; 
   border-top: 1px solid #e9ecef; 
@@ -193,27 +193,27 @@ function formatDate(dateStr) {
 
 
 @media (max-width: 768px) {
-  .wt-layout {
+  .working-time__layout {
     flex-direction: column;  
     gap: 1rem;
   }
-  .employees-list {
+  .working-time__employees-list {
     width: 100%;
     min-width: unset;
   }
-  .employees-list ul {
+  .working-time__employees-list ul {
     flex-direction: column;
     gap: 0.5rem;
   }
-  .employee-details {
+  .working-time__details {
     width: 100%;
   }
-  .hours-table th,
-  .hours-table td {
+  .working-time__hours-table th,
+  .working-time__hours-table td {
     padding: 0.4rem 0.6rem;
     font-size: 0.8rem;
   }
-  .summary {
+  .working-time__summary {
     font-size: 0.85rem;
   }
 }
