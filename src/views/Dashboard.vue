@@ -38,7 +38,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import TheHeader from '../components/TheHeader.vue'
-import { employees, attendanceData, attendanceDates } from '../mocks/employees.js'
+import { employees, attendanceData } from '../mocks/employees.js'
 
 const userName = ref('Сергей')
 
