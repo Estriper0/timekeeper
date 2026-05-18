@@ -64,15 +64,28 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import TheHeader from '../components/TheHeader.vue'
-import { employees, workingTimeData } from '../mocks/employees.js'
+import { API_ENDPOINTS } from '../api/config.js'
 
+const employees = ref([])
+const workingTimeData = ref([])
 const selectedEmployee = ref(null)
+
+onMounted(async () => {
+  try {
+    const res = await fetch(API_ENDPOINTS.employees)
+    const data = await res.json()
+    employees.value = data.employees || []
+    workingTimeData.value = data.workingTimeData || []
+  } catch (e) {
+    console.error('Failed to load working time data', e)
+  }
+})
 
 const employeeWorkDays = computed(() => {
   if (!selectedEmployee.value) return []
-  return workingTimeData
+  return workingTimeData.value
     .filter(item => item.employeeId === selectedEmployee.value.id)
     .sort((a, b) => new Date(a.date) - new Date(b.date))
 })

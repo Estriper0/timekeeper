@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="container header__container">
-      <router-link to="/" class="logo">
+      <router-link :to="logoLink" class="logo">
         <span class="logo__icon">⏱️</span> TimeKeeper
       </router-link>
 
@@ -120,11 +120,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const isMenuOpen = ref(false)
+const logoLink = computed(() => (localStorage.getItem('auth_token') ? '/dashboard' : '/'))
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value

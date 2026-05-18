@@ -62,7 +62,7 @@
             <h1 class="hero__title">Учет рабочего времени для тех, <span class="hero__title-accent">кто устал от Excel</span></h1>
             <div class="hero__buttons">
               <router-link to="/register" class="btn btn--primary btn--lg">Начать бесплатно</router-link>
-              <a href="#features" class="btn btn--outline-dark btn--lg">Смотреть демо</a>
+              <button type="button" @click="scrollToFeatures" class="btn btn--outline-dark btn--lg">Смотреть демо</button>
             </div>
           </div>
           <div class="hero__visual">
@@ -258,6 +258,13 @@ const handleScroll = () => {
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const scrollToFeatures = () => {
+  const featuresSection = document.getElementById('features')
+  if (featuresSection) {
+    featuresSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 }
 
 onMounted(() => {

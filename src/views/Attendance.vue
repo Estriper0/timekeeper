@@ -83,17 +83,32 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+
+import { ref, computed, onMounted } from 'vue'
 import TheHeader from '../components/TheHeader.vue'
-import { employees, attendanceData } from '../mocks/employees.js'
+import { API_ENDPOINTS } from '../api/config.js'
+
+const employees = ref([])
+const attendanceData = ref([])
 
 const selectedDate = ref(new Date().toISOString().slice(0, 10))
 
+onMounted(async () => {
+  try {
+    const res = await fetch(API_ENDPOINTS.employees)
+    const data = await res.json()
+    employees.value = data.employees || []
+    attendanceData.value = data.attendanceData || []
+  } catch (e) {
+    console.error('Failed to load employees data', e)
+  }
+})
+
 function getRecord(employeeId) {
-  return attendanceData.find(record => record.date === selectedDate.value && record.employeeId === employeeId)
+  return attendanceData.value.find(record => record.date === selectedDate.value && record.employeeId === employeeId)
 }
 
-const recordsForDate = computed(() => attendanceData.filter(r => r.date === selectedDate.value))
+const recordsForDate = computed(() => attendanceData.value.filter(r => r.date === selectedDate.value))
 
 const presentCount = computed(() => recordsForDate.value.filter(r => r.status !== 'absent').length)
 const lateCount = computed(() => recordsForDate.value.filter(r => r.status === 'late').length)

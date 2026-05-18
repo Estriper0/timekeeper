@@ -36,13 +36,24 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import TheHeader from '../components/TheHeader.vue'
-import { employees, attendanceData } from '../mocks/employees.js'
+import { API_ENDPOINTS } from '../api/config.js'
 
+const employees = ref([])
 const userName = ref('Сергей')
 
 const todayDate = new Date().toISOString().split('T')[0]
+
+onMounted(async () => {
+  try {
+    const res = await fetch(API_ENDPOINTS.employees)
+    const data = await res.json()
+    employees.value = data.employees || []
+  } catch (e) {
+    console.error('Failed to load employees', e)
+  }
+})
 
 function getDepartmentName(dept) {
   const names = { it: 'IT', hr: 'HR', sales: 'Продажи' }
