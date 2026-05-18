@@ -9,8 +9,8 @@
             <p class="not-found-page__text">
               К сожалению, запрашиваемая страница не существует или была перемещена.
             </p>
-            <router-link to="/" class="not-found-page__button">
-              Вернуться на главную
+            <router-link :to="redirectPath" class="not-found-page__button">
+              {{ redirectText }}
             </router-link>
           </div>
         </div>
@@ -20,6 +20,23 @@
 </template>
 
 <script setup>
+import { computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const isAuthenticated = computed(() => !!localStorage.getItem('auth_token'))
+
+const redirectPath = computed(() => isAuthenticated.value ? '/dashboard' : '/')
+
+const redirectText = computed(() => isAuthenticated.value ? 'Вернуться на панель управления' : 'Вернуться на главную')
+
+onMounted(() => {
+  // Автоматическое перенаправление через 2 секунды
+  setTimeout(() => {
+    router.push(redirectPath.value)
+  }, 2000)
+})
 </script>
 
 <style scoped>
